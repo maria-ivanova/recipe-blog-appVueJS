@@ -1,18 +1,21 @@
 <template>
   <div id="app">
     <Header />
+    <Topmenu />
     <Footer />
   </div>
 </template>
 
 <script>
 import Header from './components/core/Header.vue';
+import Topmenu from './components/core/TopMenu.vue';
 import Footer from './components/core/Footer.vue';
 
 export default {
   name: 'App',
   components: {
     Header,
+    Topmenu,
     Footer
   }
 }

@@ -51,7 +51,7 @@ export default {
 }
 
 .copyrights {
-  padding: 20px 0 10px 0;
+  padding: 20px 0;
   background-color: #66a55f;
   font-size: 16px;
   line-height: 26px;
