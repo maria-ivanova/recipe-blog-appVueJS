@@ -14,8 +14,8 @@
 
         <ul class="menu">
           <li class="">
-            <span>some email <fa-icon icon="chevron-down"></fa-icon></span>
-
+            <span>some email <font-awesome-icon icon="chevron-down" /></span>
+            
             <ul class="submenu">
               <li><a href="">Създай рецепта</a></li>
               <li><a href="">Моите рецепти</a></li>
