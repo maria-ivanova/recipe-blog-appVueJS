@@ -3,7 +3,7 @@
     <div class="container">
       <Logo />
       <SearchForm />
-     <!-- <app-mobile-menu></app-mobile-menu>-->
+      <MobileMenu />
 
       <div class="header_right">
         <ul class="menu">
@@ -36,12 +36,14 @@
 <script>
 import Logo from './Logo.vue';
 import SearchForm from './SearchForm.vue';
+import MobileMenu from './MobileMenu';
 
 export default {
   name: "Header",
   components: {
       Logo,
-      SearchForm
+      SearchForm,
+      MobileMenu
   },
 };
 </script>
