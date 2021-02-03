@@ -2,8 +2,8 @@
   <header class="sec header_sec" id="home">
     <div class="container">
       <Logo />
-     <!-- <app-search-form class="search_form_box"></app-search-form>
-      <app-mobile-menu></app-mobile-menu>-->
+      <SearchForm />
+     <!-- <app-mobile-menu></app-mobile-menu>-->
 
       <div class="header_right">
         <ul class="menu">
@@ -35,13 +35,14 @@
 
 <script>
 import Logo from './Logo.vue';
+import SearchForm from './SearchForm.vue';
 
 export default {
   name: "Header",
   components: {
-      Logo
+      Logo,
+      SearchForm
   },
-  props: {},
 };
 </script>
 
@@ -181,23 +182,6 @@ export default {
 
     .header_right {
       display: none;
-    }
-
-    .search_form_box {
-      width: 40%;
-    }
-  }
-
-  @media (max-width: 700px) {
-    .search_form_box  {
-      width: 100%;
-      margin-top: 20px;
-    }
-  }
-
-  @media (max-width: 400px) {
-    .search_form_box {
-      width: 80%;
     }
   }
 </style>
