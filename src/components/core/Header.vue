@@ -7,7 +7,9 @@
 
       <div class="header_right">
         <ul class="menu">
-          <li><a href="">Вход</a></li>
+          <li>
+            <router-link :to="ROUTES.LOGIN">Вход</router-link>
+          </li>
 
           <li><a href="">Регистрация</a></li>
         </ul>
@@ -37,6 +39,7 @@
 import Logo from './Logo.vue';
 import SearchForm from './SearchForm.vue';
 import MobileMenu from './MobileMenu';
+import ROUTES from '../../constants/routes.js';
 
 export default {
   name: "Header",
@@ -45,6 +48,11 @@ export default {
       SearchForm,
       MobileMenu
   },
+  data() {
+    return {
+      ROUTES
+    }
+  }
 };
 </script>
 
