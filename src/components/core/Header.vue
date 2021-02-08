@@ -6,7 +6,7 @@
       <MobileMenu />
 
       <div class="header_right">
-        <ul class="menu">
+        <ul class="menu" v-if="!user">
           <li>
             <router-link :to="ROUTES.LOGIN">Вход</router-link>
           </li>
@@ -14,9 +14,9 @@
           <li><a href="">Регистрация</a></li>
         </ul>
 
-        <ul class="menu">
+        <ul class="menu" v-if="user">
           <li class="">
-            <span>some email <font-awesome-icon icon="chevron-down" /></span>
+            <span>{{ user.email }} <font-awesome-icon icon="chevron-down" /></span>
             
             <ul class="submenu">
               <li><a href="">Създай рецепта</a></li>
@@ -28,7 +28,7 @@
             </ul>
           </li>
 
-          <li><span>Изход</span></li>
+          <li><span @click="userLogout">Изход</span></li>
         </ul>
       </div>
     </div>
@@ -40,6 +40,8 @@ import Logo from './Logo.vue';
 import SearchForm from './SearchForm.vue';
 import MobileMenu from './MobileMenu';
 import ROUTES from '../../constants/routes.js';
+import { logout } from '../../services/firebase.auth.js';
+
 
 export default {
   name: "Header",
@@ -52,7 +54,18 @@ export default {
     return {
       ROUTES
     }
+  },
+  computed: {
+    user() {
+      return this.$store.getters.loggedUser;
+    }
+  },
+  methods: {
+    userLogout() {
+      logout();
+    }
   }
+
 };
 </script>
 

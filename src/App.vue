@@ -8,9 +8,13 @@
 </template>
 
 <script>
+import store from "./store";
+import { auth } from './services/firebase.js';
+
 import Header from './components/core/Header.vue';
 import Topmenu from './components/core/TopMenu.vue';
 import Footer from './components/core/Footer.vue';
+
 
 export default {
   name: 'App',
@@ -19,6 +23,12 @@ export default {
     Topmenu,
     Footer
   },
+  mounted() {
+     auth.onAuthStateChanged(user => {
+       store.dispatch('fetchUser', user);
+     });
+     
+  }
 
 }
 </script>
