@@ -11,7 +11,9 @@
             <router-link :to="ROUTES.LOGIN">Вход</router-link>
           </li>
 
-          <li><a href="">Регистрация</a></li>
+          <li>
+            <router-link :to="ROUTES.REGISTER">Регистрация</router-link>
+          </li>
         </ul>
 
         <ul class="menu" v-if="user">
@@ -63,6 +65,7 @@ export default {
   methods: {
     userLogout() {
       logout();
+      this.$router.push(ROUTES.HOME);
     }
   }
 

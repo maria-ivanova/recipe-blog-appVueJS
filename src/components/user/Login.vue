@@ -53,7 +53,7 @@
 
         <div className="{mainStyles.input_row}">
           Все още нямаш профил?
-          <a href="">Регистрирай се</a>
+          <router-link :to="ROUTES.REGISTER">Регистрирай се</router-link>
         </div>
       </form>
     </div>
@@ -61,8 +61,8 @@
 </template>
 
 <script>
-import ROUTES from '../../constants/routes.js';
 import { loginUser } from '../../services/firebase.auth.js';
+import ROUTES from '../../constants/routes.js';
 import { customErrors } from '../../constants/errors';
 import { validationMixin } from 'vuelidate';
 import { required, email, } from 'vuelidate/lib/validators';
@@ -94,13 +94,12 @@ export default {
       this.$v.$touch();
 
       if(this.$v.$error) {
-        this.errorMsg = customErrors['wrongUserPassword'];
         return;
       }
 
       loginUser(this.email, this.password)
       .then(() => {
-        this.$router.push(ROUTES.HOME)
+        this.$router.push(ROUTES.PROFILE)
       })
       .catch(() => {
         this.errorMsg = this.errorMsg = customErrors['wrongUserPassword'];
