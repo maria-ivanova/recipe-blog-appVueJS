@@ -138,14 +138,14 @@ export default {
 
       passwordUpdate(this.password)
         .then(() => {
+          this.$toasted.success('Успешна промяна на парола!');
           this.errorMsg = "";
-          console.log("YES");
           logout();
           this.$router.push(ROUTES.LOGIN);
         })
         .catch((err) => {
           if (err.code === "auth/requires-recent-login") {
-            this.errorMsg = firebaseErrors[err.code];
+            this.$toasted.error(firebaseErrors[err.code]);
             logout();
             this.$router.push(ROUTES.LOGIN);
 

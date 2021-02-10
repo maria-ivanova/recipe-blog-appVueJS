@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import App from './App.vue';
 import VueRouter from 'vue-router';
+import Toasted from 'vue-toasted';
 import router from './router.js';
 import store from './store.js';
 
@@ -13,6 +14,7 @@ Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 Vue.config.productionTip = false;
 Vue.use(VueRouter);
+Vue.use(Toasted, { position: 'top-right', duration: 4000 });
 
 new Vue({
   render: h => h(App),

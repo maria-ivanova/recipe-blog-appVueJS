@@ -212,6 +212,14 @@ form {
   background-color: #66a55f;
 }
 
+.toasted .primary.success, .toasted.toasted-primary.success {
+  background: #009542 !important;
+}
+
+.toasted .primary.error, .toasted.toasted-primary.error {
+  background: #e21d3c !important;
+}
+
 @media (max-width: 1275px) {
   .container {
     width: 100%;
