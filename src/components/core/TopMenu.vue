@@ -2,18 +2,41 @@
   <section class="sec nav_sec">
     <div class="container">
       <nav class="topmenu">
-        <a href="">Начало</a>
-        <!--<a
-          *ngFor="let category of allCategories"
-          [routerLink]="[ROUTES.RECIPES, category]">{{ category }}</a>-->
+        <router-link to="/" exact>Начало</router-link>
+        <router-link
+          v-for="category of allCategories"
+          :to="{ name: 'recipesCategory', params: { category } }"
+          :key="category"
+          >{{ category }}</router-link
+        >
       </nav>
     </div>
   </section>
 </template>
 
 <script>
+import { getCategories } from "../../services/firebase.requests.js";
+
 export default {
   name: "TopMenu",
+  data() {
+    return {
+      allCategories: [],
+    };
+  },
+  methods: {
+    getAllCategories() {
+      getCategories().then((response) => {
+        if (response.status === 200) {
+          this.allCategories = Object.values(response.data)[0];
+        }
+      })
+    },
+  },
+
+  created() {
+    this.getAllCategories();
+  },
 };
 </script>
 

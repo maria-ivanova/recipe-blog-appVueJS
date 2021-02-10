@@ -82,7 +82,6 @@
 
 <script>
 import { passwordUpdate, logout } from "../../services/firebase.auth.js";
-import ROUTES from "../../constants/routes.js";
 import { firebaseErrors, customErrors } from "../../constants/errors";
 import { validationMixin } from "vuelidate";
 import { required, minLength, sameAs } from "vuelidate/lib/validators";
@@ -96,7 +95,6 @@ export default {
       password: "",
       rePassword: "",
       errorMsg: "",
-      ROUTES,
       customErrors,
     };
   },
@@ -141,13 +139,13 @@ export default {
           this.$toasted.success('Успешна промяна на парола!');
           this.errorMsg = "";
           logout();
-          this.$router.push(ROUTES.LOGIN);
+          this.$router.push('/login');
         })
         .catch((err) => {
           if (err.code === "auth/requires-recent-login") {
             this.$toasted.error(firebaseErrors[err.code]);
             logout();
-            this.$router.push(ROUTES.LOGIN);
+            this.$router.push('/login');
 
           } else {
             this.errorMsg = firebaseErrors[err.code] || customErrors["failedChangePassword"];

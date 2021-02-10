@@ -8,11 +8,11 @@
       <div class="header_right">
         <ul class="menu" v-if="!user">
           <li>
-            <router-link :to="ROUTES.LOGIN">Вход</router-link>
+            <router-link to="/login">Вход</router-link>
           </li>
 
           <li>
-            <router-link :to="ROUTES.REGISTER">Регистрация</router-link>
+            <router-link to="/register">Регистрация</router-link>
           </li>
         </ul>
 
@@ -41,7 +41,6 @@
 import Logo from './Logo.vue';
 import SearchForm from './SearchForm.vue';
 import MobileMenu from './MobileMenu';
-import ROUTES from '../../constants/routes.js';
 import { logout } from '../../services/firebase.auth.js';
 
 
@@ -52,11 +51,6 @@ export default {
       SearchForm,
       MobileMenu
   },
-  data() {
-    return {
-      ROUTES
-    }
-  },
   computed: {
     user() {
       return this.$store.getters.loggedUser;
@@ -65,7 +59,7 @@ export default {
   methods: {
     userLogout() {
       logout();
-      this.$router.push(ROUTES.HOME);
+      this.$router.push('/');
     }
   }
 

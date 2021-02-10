@@ -1,19 +1,12 @@
 <template>
-  <router-link :to="ROUTES.HOME" exact class="logo">
+  <router-link to="/" exact class="logo">
     <img src="../../assets/images/logo_spatulas.png" alt="Spatulas logo" />
   </router-link>
 </template>
 
 <script>
-import ROUTES from "../../constants/routes.js";
-
 export default {
   name: "Logo",
-  data() {
-    return {
-      ROUTES,
-    };
-  },
 };
 </script>
 

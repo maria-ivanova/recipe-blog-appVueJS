@@ -107,7 +107,6 @@
 
 <script>
 import { registerUser } from "../../services/firebase.auth.js";
-import ROUTES from "../../constants/routes.js";
 import { firebaseErrors, customErrors } from "../../constants/errors";
 import { validationMixin } from "vuelidate";
 import { required, email, minLength, sameAs } from "vuelidate/lib/validators";
@@ -123,7 +122,6 @@ export default {
       password: "",
       rePassword: "",
       errorMsg: "",
-      ROUTES,
       customErrors,
     };
   },
@@ -156,7 +154,7 @@ export default {
           response.user.updateProfile({
             displayName: this.username,
           });
-          this.$router.push(ROUTES.PROFILE);
+          this.$router.push('/profile');
         })
         .catch(err => {
           this.errorMsg = firebaseErrors[err.code] || customErrors["failedRegister"];
