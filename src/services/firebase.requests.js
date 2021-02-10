@@ -22,7 +22,7 @@ const getItemInfo = (id) => {
 }
 
 const getData = () => {
-    return fetch(`${DATABASE_URL}/${RESIPES_DB}.json`).then(response => response.json());
+    return axios.get(`${RESIPES_DB}.json`);
 }
 
 const getCategories = () => {

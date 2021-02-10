@@ -2,7 +2,7 @@
   <div>
     <IndexBanner />
 
-    <!--<section class="sec content_sec">
+    <section class="sec content_sec">
       <div class="container">
         <h2 class="page_title">
           <span>
@@ -10,16 +10,13 @@
           </span>
         </h2>
 
-        <app-items-list
-          [sortCriterion]="'createdDate'"
-          [maxElements]="8"
-        ></app-items-list>
+        <ItemsList :sortCriterion="sortCriterion" :maxElements="maxElements"/>
       </div>
     </section>
 
-    <app-index-info></app-index-info>
+    <IndexInfo />
 
-    <section class="sec content_sec">
+   <!--<section class="sec content_sec">
       <div class="container">
         <h2 class="page_title">
           <span>
@@ -37,12 +34,24 @@
 </template>
 
 <script>
-import IndexBanner from "./IndexBanner.vue";
+import IndexBanner from './IndexBanner.vue';
+import ItemsList from '../shared/ItemsList.vue'
+import IndexInfo from './IndexInfo.vue';
 
 export default {
   name: "Home",
   components: {
     IndexBanner,
+    ItemsList,
+    IndexInfo
+  },
+  data() {
+    return {
+      titleNewRecipes: 'Нови рецепти',
+      titleMostLiked: 'Най-харесвани рецепти',
+      sortCriterion: 'createdDate',
+      maxElements: 8
+    };
   },
 };
 </script>

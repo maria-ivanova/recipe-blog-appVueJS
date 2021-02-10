@@ -25,6 +25,14 @@ axios.interceptors.request.use(function (config) {
   return Promise.reject(error);
 });
 
+Vue.filter('filterDate', function(value) {
+  return new Date(value).toLocaleDateString('bg-BG', { day: 'numeric', month: 'long', year: 'numeric' });
+})
+
+Vue.filter('filterSubstring', function(value) {
+  return value.substr(0, 50);
+})
+
 new Vue({
   render: h => h(App),
   router,

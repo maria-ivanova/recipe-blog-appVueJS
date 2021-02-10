@@ -4,6 +4,7 @@ import Login from './components/user/Login.vue';
 import Register from './components/user/Register.vue';
 import Profile from './components/user/Profile.vue';
 import ListPage from './components/shared/ListPage.vue';
+import Details from './components/recipes/Details.vue';
 
 /*const HOME = '/';
 const LOGIN = '/login';
@@ -51,6 +52,11 @@ const router = new VueRouter({
             path: '/recipes/:category', 
             name: 'recipesCategory',
             component: ListPage
+        },
+        {
+            path: '/details/:id', 
+            name: 'details',
+            component: Details
         }
     ]
 })
