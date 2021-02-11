@@ -15,12 +15,19 @@ export default {
   },
   props: {
     sortCriterion: String,
+    filerCriterion: String,
+    secondFilterCriterion: String,
     maxElements: Number,
   },
   data() {
     return {
       itemsList: [],
     };
+  },
+  watch: {
+    secondFilterCriterion: function() {
+      this.getAllItems();
+    }
   },
   methods: {
     getAllItems() {
@@ -32,6 +39,10 @@ export default {
               ...response.data[key],
             };
           });
+        }
+
+        if (this.filerCriterion && this.secondFilterCriterion !== 'Всички рецепти') {
+          this.itemsList = this.itemsList.filter((el) => el[this.filerCriterion] === this.secondFilterCriterion);
         }
 
         if (this.sortCriterion) {
