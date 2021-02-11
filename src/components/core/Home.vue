@@ -10,13 +10,13 @@
           </span>
         </h2>
 
-        <ItemsList :sortCriterion="sortCriterion" :maxElements="maxElements"/>
+        <ItemsList sortCriterion="createdDate" :maxElements="maxElements"/>
       </div>
     </section>
 
     <IndexInfo />
 
-   <!--<section class="sec content_sec">
+   <section class="sec content_sec">
       <div class="container">
         <h2 class="page_title">
           <span>
@@ -24,12 +24,9 @@
           </span>
         </h2>
 
-        <app-items-list
-          [sortCriterion]="'likes'"
-          [maxElements]="8"
-        ></app-items-list>
+        <ItemsList sortCriterion="likes" :maxElements="maxElements"/>
       </div>
-    </section>-->
+    </section>
   </div>
 </template>
 
@@ -49,7 +46,6 @@ export default {
     return {
       titleNewRecipes: 'Нови рецепти',
       titleMostLiked: 'Най-харесвани рецепти',
-      sortCriterion: 'createdDate',
       maxElements: 8
     };
   },
