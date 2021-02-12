@@ -5,6 +5,8 @@ import Register from './components/user/Register.vue';
 import Profile from './components/user/Profile.vue';
 import ListPage from './components/shared/ListPage.vue';
 import Details from './components/recipes/Details.vue';
+import Edit from './components/recipes/Edit.vue';
+import NotFound from './components/core/NotFound.vue';
 
 /*const HOME = '/';
 const LOGIN = '/login';
@@ -57,7 +59,17 @@ const router = new VueRouter({
             path: '/details/:id', 
             name: 'details',
             component: Details
-        }
+        },
+        {
+            path: '/edit/:id', 
+            name: 'edit',
+            component: Edit
+        },
+        {
+            path: '*',
+            name: 'notFound',
+            component: NotFound
+          }
     ]
 })
 

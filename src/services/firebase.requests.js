@@ -10,15 +10,11 @@ const postCreate = (data) => {
 };
 
 const postEdit = (id, data) => {
-    return fetch(`${DATABASE_URL}/${RESIPES_DB}/${id}.json`, {
-        method: 'PUT',
-        headers: { 'Content-type': 'application/json' },
-        body: JSON.stringify(data)
-    })
+    return axios.put(`${RESIPES_DB}/${id}.json`, data)
 }
 
 const getItemInfo = (id) => {
-    return fetch(`${DATABASE_URL}/${RESIPES_DB}/${id}.json`);
+    return axios.get(`${RESIPES_DB}/${id}.json`);
 }
 
 const getData = () => {
