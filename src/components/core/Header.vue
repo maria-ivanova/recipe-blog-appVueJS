@@ -25,7 +25,10 @@
                 <router-link to="/create">Създай рецепта</router-link>
               </li>
 
-              <li><a href="">Моите рецепти</a></li>
+              <li>
+                <router-link to="/myRecipes">Моите рецепти</router-link>
+              </li>
+
               <li>
                 <a href="">Любими рецепти</a>
               </li>

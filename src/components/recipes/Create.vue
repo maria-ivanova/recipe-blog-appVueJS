@@ -161,7 +161,7 @@
         </div>
 
         <div class="input_row">
-          <button type="submit" class="btn">Редактирай</button>
+          <button type="submit" class="btn">Създай</button>
         </div>
       </form>
     </div>

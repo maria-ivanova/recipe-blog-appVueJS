@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { DATABASE_URL, RESIPES_DB, CATEGORIES_DB } from '../constants/db.js';
+import { RESIPES_DB, CATEGORIES_DB } from '../constants/db.js';
 
 const postCreate = (data) => {
     return axios.post(`${RESIPES_DB}.json`, data);
@@ -22,9 +22,7 @@ const getCategories = () => {
 }
 
 const deleteItem = (id) => {
-    return fetch(`${DATABASE_URL}/${RESIPES_DB}/${id}.json`, {
-        method: 'DELETE'
-    })
+    return axios.delete(`${RESIPES_DB}/${id}.json`);
 }
 
 export {
