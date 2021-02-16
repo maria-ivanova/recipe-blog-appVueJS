@@ -21,7 +21,10 @@
             <span>{{ user.email }} <font-awesome-icon icon="chevron-down" /></span>
             
             <ul class="submenu">
-              <li><a href="">Създай рецепта</a></li>
+              <li>
+                <router-link to="/create">Създай рецепта</router-link>
+              </li>
+
               <li><a href="">Моите рецепти</a></li>
               <li>
                 <a href="">Любими рецепти</a>

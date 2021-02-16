@@ -2,11 +2,7 @@ import axios from 'axios';
 import { DATABASE_URL, RESIPES_DB, CATEGORIES_DB } from '../constants/db.js';
 
 const postCreate = (data) => {
-    return fetch(`${DATABASE_URL}/${RESIPES_DB}.json`, {
-        method: "POST",
-        headers: { 'Content-type': 'application/json' },
-        body: JSON.stringify(data)
-    })
+    return axios.post(`${RESIPES_DB}.json`, data);
 };
 
 const postEdit = (id, data) => {

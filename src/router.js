@@ -6,6 +6,7 @@ import Profile from './components/user/Profile.vue';
 import ListPage from './components/shared/ListPage.vue';
 import Details from './components/recipes/Details.vue';
 import Edit from './components/recipes/Edit.vue';
+import Create from './components/recipes/Create.vue';
 import NotFound from './components/core/NotFound.vue';
 
 /*const HOME = '/';
@@ -64,6 +65,11 @@ const router = new VueRouter({
             path: '/edit/:id', 
             name: 'edit',
             component: Edit
+        },
+        {
+            path: '/create', 
+            name: 'create',
+            component: Create
         },
         {
             path: '*',
