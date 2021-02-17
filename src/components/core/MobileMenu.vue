@@ -4,36 +4,55 @@
       <font-awesome-icon icon="bars" />
     </button>
 
-    <div class="mobile_menu" :class="{open: isOpen}">
+    <div class="mobile_menu" :class="{ open: isOpen }">
       <button @click="setOpen()" class="close_mobile_menu">
         <font-awesome-icon icon="times" />
       </button>
 
       <nav>
         <ul>
-          <li><a href="">Начало</a></li>
-         <!-- <li *ngFor="let category of allCategories">
-            <a [routerLink]="[ROUTES.RECIPES, category]">{{ category }}</a>
+          <li>
+            <router-link to="/" exact> Начало </router-link>
           </li>
 
-          <li *ngIf="!loggedUser"><a [routerLink]="[ROUTES.LOGIN]">Вход</a></li>
-          <li *ngIf="!loggedUser">
-            <a [routerLink]="[ROUTES.REGISTER]">Регистрация</a>
+          <li v-for="category of allCategories" :key="category">
+            <router-link
+              :to="{ name: 'recipesCategory', params: { category } }"
+              >{{ category }}</router-link
+            >
           </li>
 
-          <li *ngIf="loggedUser">
-            <a [routerLink]="[ROUTES.CREATE]">Създай рецепта</a>
-          </li>
-          <li *ngIf="loggedUser">
-            <a [routerLink]="[ROUTES.MY_RECIPES]">Моите рецепти</a>
-          </li>
-          <li *ngIf="loggedUser">
-            <a [routerLink]="[ROUTES.FAVORITES_RECIPES]">Любими рецепти</a>
-          </li>
-          <li *ngIf="loggedUser">
-            <a [routerLink]="[ROUTES.PROFILE]">Профил</a>
-          </li>
-          <li *ngIf="loggedUser"><span (click)="logout()">Изход</span></li>-->
+          <tempplate v-if="user">
+            <li>
+              <router-link to="/create">Създай рецепта</router-link>
+            </li>
+
+            <li>
+              <router-link to="/myRecipes">Моите рецепти</router-link>
+            </li>
+
+            <li>
+              <router-link to="/favorites">Любими рецепти</router-link>
+            </li>
+
+            <li>
+              <router-link to="/profile">Профил</router-link>
+            </li>
+
+            <li>
+              <span @click="userLogout">Изход</span>
+            </li>
+          </tempplate>
+
+          <template v-else>
+            <li>
+              <router-link to="/login">Вход</router-link>
+            </li>
+
+            <li>
+              <router-link to="/register">Регистрация</router-link>
+            </li>
+          </template>
         </ul>
       </nav>
     </div>
@@ -41,17 +60,43 @@
 </template>
 
 <script>
+import { logout } from "../../services/firebase.auth.js";
+import { getCategories } from "../../services/firebase.requests.js";
+
 export default {
   name: "MobileMenu",
   data: function () {
     return {
       isOpen: false,
+      allCategories: [],
     };
   },
+  computed: {
+    user() {
+      return this.$store.getters.loggedUser;
+    },
+  },
   methods: {
+    getAllCategories() {
+      getCategories().then((response) => {
+        if (response.status === 200) {
+          this.allCategories = Object.values(response.data)[0];
+        }
+      });
+    },
+
     setOpen() {
       this.isOpen = !this.isOpen;
     },
+
+    userLogout() {
+      logout();
+      this.$router.push("/");
+    },
+  },
+
+  created() {
+    this.getAllCategories();
   },
 };
 </script>
