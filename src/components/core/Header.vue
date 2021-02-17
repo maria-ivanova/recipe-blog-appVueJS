@@ -30,9 +30,12 @@
               </li>
 
               <li>
-                <a href="">Любими рецепти</a>
+                <router-link to="/favorites">Любими рецепти</router-link>
               </li>
-              <li><a href="">Профил</a></li>
+
+              <li>
+                 <router-link to="/profile">Профил</router-link>
+                </li>
             </ul>
           </li>
 
