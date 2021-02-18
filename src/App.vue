@@ -2,7 +2,10 @@
   <div id="app">
     <Header />
     <Topmenu />
-    <router-view></router-view>
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
+    
     <Footer />
   </div>
 </template>

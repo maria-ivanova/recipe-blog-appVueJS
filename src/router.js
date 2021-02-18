@@ -9,6 +9,7 @@ import Edit from './components/recipes/Edit.vue';
 import Create from './components/recipes/Create.vue';
 import MyRecipes from './components/user-recipes/MyRecipes.vue';
 import Favorites from './components/user-recipes/Favorites.vue';
+import Search from './components/core/Search.vue';
 import NotFound from './components/core/NotFound.vue';
 
 /*const HOME = '/';
@@ -82,6 +83,11 @@ const router = new VueRouter({
             path: '/favorites', 
             name: 'favorites',
             component: Favorites
+        },
+        {
+            path: '/search', 
+            name: 'search',
+            component: Search
         },
         {
             path: '*',

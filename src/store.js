@@ -5,13 +5,16 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
-    loggedUser: null
+    loggedUser: null,
+    searchResult: null
   },
   getters: {
-    loggedUser: (state) => state.loggedUser
+    loggedUser: (state) => state.loggedUser,
+    searchResult: (state) => state.searchResult
   },
   mutations: {
-      setUser: (state, data) => state.loggedUser = data
+      setUser: (state, data) => state.loggedUser = data,
+      setSearchResult: (state, data) => state.searchResult = data,
   },
   actions: {
       fetchUser: (context, user) => {
@@ -20,6 +23,14 @@ const store = new Vuex.Store({
           }else {
             context.commit('setUser', null)
           }
+      },
+
+      fetchSearchResult: (context, data) => {
+        if(data) {
+          context.commit('setSearchResult', data)
+        }else {
+          context.commit('setSearchResult', null)
+        }
       }
   }
 });
