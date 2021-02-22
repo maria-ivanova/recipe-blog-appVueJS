@@ -1,6 +1,7 @@
 import VueRouter from 'vue-router';
 import { auth } from './services/firebase.js';
 import Home from './components/core/Home.vue';
+import User from './components/user/User.vue';
 import Login from './components/user/Login.vue';
 import Register from './components/user/Register.vue';
 import Profile from './components/user/Profile.vue';
@@ -12,20 +13,6 @@ import MyRecipes from './components/user-recipes/MyRecipes.vue';
 import Favorites from './components/user-recipes/Favorites.vue';
 import Search from './components/core/Search.vue';
 import NotFound from './components/core/NotFound.vue';
-
-/*const HOME = '/';
-const LOGIN = '/login';
-const REGISTER = '/register';
-const PROFILE = '/profile';
-const CREATE = '/create';
-const EDIT = '/edit';
-const DETAILS = '/details';
-const RECIPES = '/recipes';
-const MY_RECIPES = '/myRecipes';
-const FAVORITES_RECIPES = '/myFavorites';
-const SEARCH = '/search';
-const NOT_FOUND = '/notFound';
-const ERROR = '/error';*/
 
 const router = new VueRouter({
     mode: 'history',
@@ -47,7 +34,7 @@ const router = new VueRouter({
             },
             beforeEnter: (to, from, next) => {
                 if(auth.currentUser) {
-                    next('/profile')
+                    next({name: 'profile'})
                 }else {
                     next();
                 }
@@ -62,19 +49,25 @@ const router = new VueRouter({
             },
             beforeEnter: (to, from, next) => {
                 if(auth.currentUser) {
-                    next('/profile')
+                    next({name: 'profile'})
                 }else {
                     next();
                 }
             }
         },
         {
-            path: '/profile',
-            name: 'profile',
-            component: Profile,
-            meta: {
-                requiresAuth: true
-            }
+            path: '/user/:name',
+            component: User,
+            children: [
+                { 
+                    path: 'profile',
+                    name: 'profile',
+                    component: Profile,
+                    meta: {
+                        requiresAuth: true
+                    },
+                }
+            ]
         },
         {
             path: '/recipes',
@@ -117,20 +110,32 @@ const router = new VueRouter({
             }
         },
         {
-            path: '/myRecipes',
-            name: 'myRecipes',
-            component: MyRecipes,
-            meta: {
-                requiresAuth: true
-            }
+            path: '/user/:name',
+            component: User,
+            children: [
+                { 
+                    path: 'myRecipes',
+                    name: 'myRecipes',
+                    component: MyRecipes,
+                    meta: {
+                        requiresAuth: true
+                    },
+                }
+            ]
         },
         {
-            path: '/favorites',
-            name: 'favorites',
-            component: Favorites,
-            meta: {
-                requiresAuth: true
-            }
+            path: '/user/:name',
+            component: User,
+            children: [
+                { 
+                    path: 'favorites',
+                    name: 'favorites',
+                    component: Favorites,
+                    meta: {
+                        requiresAuth: true
+                    },
+                }
+            ]
         },
         {
             path: '/search',

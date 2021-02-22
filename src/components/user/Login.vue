@@ -96,8 +96,8 @@ export default {
       }
 
       loginUser(this.email, this.password)
-      .then(() => {
-        this.$router.push('/profile')
+      .then((response) => {
+       this.$router.push({name: 'profile', params: {name: response.user.displayName}})
       })
       .catch(() => {
         this.errorMsg = this.errorMsg = customErrors['wrongUserPassword'];

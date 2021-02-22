@@ -153,8 +153,7 @@ export default {
         .then(response => {
           response.user.updateProfile({
             displayName: this.username,
-          });
-          this.$router.push('/profile');
+          }).then(() => this.$router.push({name: 'profile', params: {name: this.username}}))
         })
         .catch(err => {
           this.errorMsg = firebaseErrors[err.code] || customErrors["failedRegister"];

@@ -28,15 +28,15 @@
             </li>
 
             <li>
-              <router-link to="/myRecipes">Моите рецепти</router-link>
+              <router-link :to="{name: 'myRecipes', params: {name: user.displayName}}">Моите рецепти</router-link>
             </li>
 
             <li>
-              <router-link to="/favorites">Любими рецепти</router-link>
+              <router-link :to="{name: 'favorites', params: {name: user.displayName}}">Любими рецепти</router-link>
             </li>
 
             <li>
-              <router-link to="/profile">Профил</router-link>
+              <router-link :to="{name: 'profile', params: {name: user.displayName}}">Профил</router-link>
             </li>
 
             <li>
