@@ -1,4 +1,5 @@
 import VueRouter from 'vue-router';
+import { auth } from './services/firebase.js';
 import Home from './components/core/Home.vue';
 import Login from './components/user/Login.vue';
 import Register from './components/user/Register.vue';
@@ -30,71 +31,139 @@ const router = new VueRouter({
     mode: 'history',
     routes: [
         {
-            path: '/', 
+            path: '/',
             name: 'home',
-            component: Home
+            component: Home,
+            meta: {
+                requiresAuth: false
+            }
         },
         {
-            path: '/login', 
+            path: '/login',
             name: 'login',
-            component: Login
+            component: Login,
+            meta: {
+                requiresAuth: false
+            },
+            beforeEnter: (to, from, next) => {
+                if(auth.currentUser) {
+                    next('/profile')
+                }else {
+                    next();
+                }
+            }
         },
         {
-            path: '/register', 
+            path: '/register',
             name: 'register',
-            component: Register
+            component: Register,
+            meta: {
+                requiresAuth: false
+            },
+            beforeEnter: (to, from, next) => {
+                if(auth.currentUser) {
+                    next('/profile')
+                }else {
+                    next();
+                }
+            }
         },
         {
-            path: '/profile', 
+            path: '/profile',
             name: 'profile',
-            component: Profile
+            component: Profile,
+            meta: {
+                requiresAuth: true
+            }
         },
         {
-            path: '/recipes', 
+            path: '/recipes',
             name: 'recipes',
-            component: ListPage
+            component: ListPage,
+            meta: {
+                requiresAuth: false
+            }
         },
         {
-            path: '/recipes/:category', 
+            path: '/recipes/:category',
             name: 'recipesCategory',
-            component: ListPage
+            component: ListPage,
+            meta: {
+                requiresAuth: false
+            }
         },
         {
-            path: '/details/:id', 
+            path: '/details/:id',
             name: 'details',
-            component: Details
+            component: Details,
+            meta: {
+                requiresAuth: false
+            }
         },
         {
-            path: '/edit/:id', 
+            path: '/edit/:id',
             name: 'edit',
-            component: Edit
+            component: Edit,
+            meta: {
+                requiresAuth: true
+            }
         },
         {
-            path: '/create', 
+            path: '/create',
             name: 'create',
-            component: Create
+            component: Create,
+            meta: {
+                requiresAuth: true
+            }
         },
         {
-            path: '/myRecipes', 
+            path: '/myRecipes',
             name: 'myRecipes',
-            component: MyRecipes
+            component: MyRecipes,
+            meta: {
+                requiresAuth: true
+            }
         },
         {
-            path: '/favorites', 
+            path: '/favorites',
             name: 'favorites',
-            component: Favorites
+            component: Favorites,
+            meta: {
+                requiresAuth: true
+            }
         },
         {
-            path: '/search', 
+            path: '/search',
             name: 'search',
-            component: Search
+            component: Search,
+            meta: {
+                requiresAuth: false
+            }
         },
         {
             path: '*',
             name: 'notFound',
-            component: NotFound
-          }
+            component: NotFound,
+            meta: {
+                requiresAuth: false
+            }
+        }
     ]
+})
+
+router.beforeEach((to, from, next) => {
+    const { requiresAuth } = to.meta;
+    const isLogged = !!auth.currentUser;
+
+    if (requiresAuth) {
+        if (isLogged) {
+            next();
+        }else {
+            next('/login');
+        }
+    }else {
+        next();
+    }
 })
 
 export default router;

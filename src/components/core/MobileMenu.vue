@@ -22,7 +22,7 @@
             >
           </li>
 
-          <tempplate v-if="user">
+          <template v-if="user">
             <li>
               <router-link to="/create">Създай рецепта</router-link>
             </li>
@@ -42,7 +42,7 @@
             <li>
               <span @click="userLogout">Изход</span>
             </li>
-          </tempplate>
+          </template>
 
           <template v-else>
             <li>
