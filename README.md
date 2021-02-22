@@ -75,7 +75,7 @@ Search recipes by title, ingredients, recipe description, category
 |/user/:username/profile|Profile page|http://localhost:8080/user/:user1/profile|
 |/create|Create a new recipe|http://localhost:8080/create|
 |/edit/:id|Edit recipe|http://localhost:8080/edit/-MERIK5gpVS9e_lk7CvH|
-|/details/:id|Details recipe page|http://localhost:8080/-MERIK5gpVS9e_lk7CvH|
+|/details/:id|Details recipe page|http://localhost:8080/details/-MERIK5gpVS9e_lk7CvH|
 |/recipes/:categoryName|Recipes page by category|http://localhost:8080/recipes/Салати|
 |/user/:username/myRecipes|Recipes published by the user|http://localhost:8080/user/:user1/myRecipes|
 |/user/:username/myFavorites|User's favorite recipes|http://localhost:8080/user/:user1/favorites|
