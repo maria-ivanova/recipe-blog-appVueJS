@@ -78,6 +78,6 @@ Search recipes by title, ingredients, recipe description, category
 |/details/:id|Details recipe page|http://localhost:8080/details/-MERIK5gpVS9e_lk7CvH|
 |/recipes/:categoryName|Recipes page by category|http://localhost:8080/recipes/Салати|
 |/user/:username/myRecipes|Recipes published by the user|http://localhost:8080/user/:user1/myRecipes|
-|/user/:username/myFavorites|User's favorite recipes|http://localhost:8080/user/:user1/favorites|
+|/user/:username/favorites|User's favorite recipes|http://localhost:8080/user/:user1/favorites|
 |/search|Search page|http://localhost:8080/search|
 
