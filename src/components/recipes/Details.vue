@@ -88,13 +88,19 @@
               </router-link>
 
               <template v-else>
-                <span v-if="isLiked(user.uid) || successfullLiking" class="favorites_info">
-                  <font-awesome-icon icon="heart" class="fa" /> Добавена в любими
-                </span>
+                <transition name="fade" mode="out-in">
+                  <span
+                    v-if="isLiked(user.uid) || successfullLiking"
+                    class="favorites_info"
+                  >
+                    <font-awesome-icon icon="heart" class="fa" /> Добавена в
+                    любими
+                  </span>
 
-                <button v-else class="btn" @click="likesHandler">
-                  <font-awesome-icon icon="heart" class="fa" />Добави в любими
-                </button>
+                  <button v-else class="btn" @click="likesHandler">
+                    <font-awesome-icon icon="heart" class="fa" />Добави в любими
+                  </button>
+                </transition>
               </template>
             </div>
           </div>
@@ -113,7 +119,7 @@ export default {
     return {
       currentItem: null,
       itemId: this.$route.params.id,
-      successfullLiking: false
+      successfullLiking: false,
     };
   },
   computed: {
@@ -159,11 +165,10 @@ export default {
 
       this.currentItem.likesArr.push(this.user.uid);
 
-      postEdit(this.itemId, this.currentItem)
-        .then(() => {
-          this.successfullLiking = true;
-          this.$toasted.success('Успешно добавихте рецептата в любими!');
-        })
+      postEdit(this.itemId, this.currentItem).then(() => {
+        this.successfullLiking = true;
+        this.$toasted.success("Успешно добавихте рецептата в любими!");
+      });
     },
   },
   created() {
@@ -173,6 +178,16 @@ export default {
 </script>
 
 <style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity .5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
 .banner_item {
   position: relative;
   display: -webkit-box;
@@ -349,6 +364,7 @@ export default {
 .favorites_info {
   display: inline-block;
   float: right;
+  padding: 10px 0;
 }
 
 @media (max-width: 700px) {

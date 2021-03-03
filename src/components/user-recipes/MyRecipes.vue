@@ -10,14 +10,16 @@
     <!-- ITEMS LIST -->
     <section class="sec content_sec">
       <div class="container">
-        <div class="items_list my_list">
+        <transition name="fade" mode="out-in">
           <template v-if="itemsList.length !== 0">
-            <MySingleItem
-              v-for="item of itemsList"
-              :item="item"
-              :key="item.id"
-              @onDeleteItem="handleDeleteItem"
-            />
+            <transition-group tag="div" name="list" class="items_list my_list">
+              <MySingleItem
+                v-for="item of itemsList"
+                :item="item"
+                :key="item.id"
+                @onDeleteItem="handleDeleteItem"
+              />
+            </transition-group>
           </template>
 
           <template v-else>
@@ -26,7 +28,7 @@
               <router-link to="/create" class="btn">Създай рецепта</router-link>
             </div>
           </template>
-        </div>
+        </transition>
       </div>
     </section>
   </div>
@@ -88,6 +90,25 @@ export default {
 </script>
 
 <style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.list-leave-active {
+  transition: all 1s;
+}
+
+.list-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
 .banner_item {
   position: relative;
   display: -webkit-box;
