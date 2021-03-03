@@ -1,18 +1,19 @@
 import VueRouter from 'vue-router';
 import { auth } from './services/firebase.js';
 import Home from './components/core/Home.vue';
-import User from './components/user/User.vue';
-import Login from './components/user/Login.vue';
-import Register from './components/user/Register.vue';
-import Profile from './components/user/Profile.vue';
 import ListPage from './components/shared/ListPage.vue';
 import Details from './components/recipes/Details.vue';
-import Edit from './components/recipes/Edit.vue';
-import Create from './components/recipes/Create.vue';
-import MyRecipes from './components/user-recipes/MyRecipes.vue';
-import Favorites from './components/user-recipes/Favorites.vue';
 import Search from './components/core/Search.vue';
 import NotFound from './components/core/NotFound.vue';
+
+const Login = () => import('./components/user/Login.vue');
+const Register = () => import('./components/user/Register.vue');
+const User  = () => import('./components/user/User.vue');
+const Profile = () => import( './components/user/Profile.vue');
+const Edit = () => import('./components/recipes/Edit.vue');
+const Create = () => import('./components/recipes/Create.vue');
+const MyRecipes = () => import('./components/user-recipes/MyRecipes.vue');
+const Favorites = () => import('./components/user-recipes/Favorites.vue');
 
 const router = new VueRouter({
     mode: 'history',
