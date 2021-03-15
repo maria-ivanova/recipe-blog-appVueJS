@@ -1,8 +1,7 @@
 import Vue from 'vue';
 import App from './App.vue';
-import VueRouter from 'vue-router';
 import Toasted from 'vue-toasted';
-import router from './router.js';
+import router from './router';
 import store from './store.js';
 import axios from 'axios';
 import { DATABASE_URL } from './constants/db.js';
@@ -16,7 +15,6 @@ library.add(faChevronDown, faUser, faHeart, faUpload, faTimes, faEdit, faBars);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 Vue.config.productionTip = false;
-Vue.use(VueRouter);
 Vue.use(Toasted, { position: 'top-right', duration: 4000 });
 
 axios.interceptors.request.use(function (config) {
