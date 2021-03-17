@@ -8,20 +8,46 @@
 </template>
 
 <script>
+import { getData } from "../../services/firebase.requests.js";
+import store from "../../store.js";
+//import { EventBus } from "../../eventBus.js";
+
 export default {
   name: "SearchForm",
   data() {
     return {
       searchValue: null,
+      data: [],
     };
   },
   methods: {
     search() {
-      this.$router.history.push({
-        name: "search",
-        query: { filter: this.searchValue },
+      const regex = RegExp(this.searchValue, "gmi");
+
+      getData().then((response) => {
+        if (response.status === 200 && response.data) {
+          this.data = Object.keys(response.data)
+            .map((key) => {
+              return {
+                id: key,
+                ...response.data[key],
+              };
+            })
+            .filter(
+              (el) =>
+                regex.test(el.title) ||
+                regex.test(el.ingredients) ||
+                regex.test(el.recipeDescription) ||
+                regex.test(el.category)
+            );
+        }
+
+        //EventBus.$emit("searchEvent", this.data);
+        store.dispatch('fetchSearchResult', this.data);
+        this.searchValue = null;
+        this.$router.history.push({ name: "search" });
+        
       });
-      this.searchValue = null;
     },
   },
 };

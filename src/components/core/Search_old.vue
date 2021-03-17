@@ -21,7 +21,7 @@
 
 <script>
 import SingleItem from "../shared/SingleItem.vue";
-import { getData } from "../../services/firebase.requests.js";
+//import { EventBus } from "../../eventBus.js";
 
 export default {
   name: "Search",
@@ -29,48 +29,26 @@ export default {
     SingleItem,
   },
   computed: {
-    searchFilter() {
-      return this.$route.query.filter
-    }
-  },
-  watch: {
-    searchFilter: function() {
-      this.search();
-    }
+    itemsList() {
+      return this.$store.getters.searchResult;
+    },
   },
   data() {
     return {
       pageTitle: "Резултат от търсенето",
-      itemsList: []
     };
   },
-  methods: {
-    search() {
-      const regex = RegExp(this.searchFilter, "gmi");
-
-      getData().then((response) => {
-        if (response.status === 200 && response.data) {
-          this.itemsList = Object.keys(response.data)
-            .map((key) => {
-              return {
-                id: key,
-                ...response.data[key],
-              };
-            })
-            .filter(
-              (el) =>
-                regex.test(el.title) ||
-                regex.test(el.ingredients) ||
-                regex.test(el.recipeDescription) ||
-                regex.test(el.category)
-            );
-        }
-      });
-    },
-  },
   created() {
-    this.search();
-  }
+    /* The EventBus is designed to allow communication between two components that exist on the page at the same time. 
+        If you need data that persists between router-views, then you should look at using a Vuex store.
+        As it is, the Receiver component doesn't exist at the time of the message being sent, 
+        and therefore it has no listener attached to the event.
+    */
+    /*EventBus.$on("searchEvent", (data) => {
+      this.itemsList = data;
+      console.log(this.itemsList);
+    });*/
+  },
 };
 </script>
 
